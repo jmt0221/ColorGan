@@ -78,15 +78,16 @@ def rgb_to_lab(img, l=False, ab=False):
     Takes in RGB channels in range 0-255 and outputs L or AB channels in range -1 to 1
     """
     img = img / 255
-    l = color.rgb2lab(img)[:,:,0]
-    l = l / 50 - 1
-    l = l[...,np.newaxis]
+    l_chan = color.rgb2lab(img)[:,:,0]
+    l_chan = l_chan / 50 - 1
+    l_chan = l_chan[...,np.newaxis]
 
-    ab = color.rgb2lab(img)[:,:,1:]
-    ab = (ab + 128) / 255 * 2 - 1
+    ab_chan = color.rgb2lab(img)[:,:,1:]
+    ab_chan = (ab_chan + 128) / 255 * 2 - 1
     if l:
-        return l
-    else: return ab
+        return l_chan
+    else: 
+    	return ab_chan
 
 def lab_to_rgb(img):
     """
