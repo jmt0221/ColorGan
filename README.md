@@ -33,21 +33,21 @@ The L channel is going to be used as the input to the Generator since it is equi
 
 ## Generator
 
-The Generator can be broken down into two parts, the encoder and the decoder. The encoder consists of 4 layers in total; first the L channel is passed through a 2-stride convolutional layer, starting with 64 feature maps and doubling each layer up to 512. Each layer also halves the size of the image so by the time we reach the latent space (middle) the feature maps are 16x16 in size. Lastly, each layer also uses a Leaky ReLU activation function and batch normalization.
+The Generator can be broken down into two parts, the encoder and the decoder. The encoder consists of 4 layers in total; first the L channel is passed through a 2-stride convolutional layer, starting with 64 feature maps and doubling each layer up to 512. The layer also halves the size of the image so by the time we reach the latent space (middle of the network) the feature maps are 16x16 in size. Lastly, each layer also uses a Leaky ReLU activation function and batch normalization.
 
 <p align="center">
 <img src="https://miro.medium.com/max/3636/0*7fgHtc8fEmoC_SiZ.png" width="600" height="300">
 </p>
 
-The Decoder is similiar except it uses transpose convolutional layers which upsamples the size of the image and halves the number of feature maps. Like in the encoder there are four of they layers and they all use the ReLU activation function and batch normalization. Lastly we use a normal convolutional layer and output 2 channels that we pass through a tanh activation function to replicate the range we scaled the images to when converting to LAB. The model
+The Decoder is similiar except it uses transpose convolutional layers which upsamples the size of the image and halves the number of feature maps. Like with the encoder, there are four layers and they all use the ReLU activation function and batch normalization. This feeds into the final layer which uses a normal convolutional layer which outputs 2 channels that we pass through a tanh activation function. The tanh function is used to replicate the range we scaled the images to when converting to LAB.
 
 ## Discriminator
 
-The Discriminator is a much simpler model and has four 2-stride convolutional layers which all use Leaky ReLU, dropout, and batch normalization (except for the first layer, which does not use batch normalization). It takes in both real and fake AB color channels and convolutional layers feed into a an output layer which uses the sigmoid activation function to predict if the images are real or fake. 
+The Discriminator is a much simpler model and has four 2-stride convolutional layers which all use Leaky ReLU, dropout, and batch normalization (except for the first layer). It takes in both real and fake AB color channels which are fed through those convolutional layers, and finally into an output layer. The output layer  uses the sigmoid activation function to predict the probability of an image being real or fake. 
 
 # Training
 
-Both models use Binary Crossentropy for their loss functions and the Adam optimization function. The Generator's loss is tied to whether or not it can fool the Discriminator into thinking the color channels are real. Contrary to all the research I found online, I had to use a lower learning rate for the discriminator to keep the model in equilibrium. Contrary to most machine learning models, the goal of a GAN isn't to minimize or maximize and function but instead keep the two networks in equillibrium during training, which can last anywhere from 6-12 hours on a GPU. During training I shuffle my dataset and use mini epochs of 320 images. I train the discriminator first on two half batches of 160 real and 160 fake images, then the generator is trained a full batch of 320. I would usually run this for about 3000, epochs but further training produced better results occassionaly.
+Both models use Binary Crossentropy for their loss functions and the Adam optimization function. Contrary to all the research I found online, I had to use a lower learning rate for the discriminator to keep the model in equilibrium. The biggest differece beteen a GAN and most machine learning models, is that the goal of a GAN isn't to minimize or maximize and function but instead keep the two competing networks in equillibrium during training, which can last anywhere from 6-12 hours on a GPU. During training I shuffle my dataset and use mini epochs of 320 images. I train the discriminator first on two half batches of 160 real and 160 fake images, then the generator is trained a full batch of 320. I would usually run this for about 3000 epochs, but further training produced better results occassionaly.
 
 <p align="center">
 <img src="https://miro.medium.com/max/3232/1*siZC9SZPLHpr9C0ofoajpA.png" width="800" height="300">
