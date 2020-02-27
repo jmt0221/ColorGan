@@ -24,7 +24,7 @@ The first step was converting the images from their standard RGB color channels 
 - A - Represents the red to green trade off of the pixels
 - B - Represents the blue to yellow trade off of the pixels
 <p align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/CIELAB_color_space_front_view.png" width="600" height="400">
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/CIELAB_color_space_front_view.png" width="400" height="500">
 </p>
 The L channel is going to be used as the input to the Generator since it is equivalent to a gray scale photo. The generator will then output both the AB channels which we combine with the input to create a colored image. The last thing we do in the transformation is scale all pixel values in the LAB color channels to the range -1 to 1.
 
