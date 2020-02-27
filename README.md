@@ -15,7 +15,7 @@ I ran this model in an AWS SageMaker GPU instance to handle the high computation
 - Streamlit
 
 # Datasets
-I used two different datasets for this project, the first is a collection of beach and coastal pictures from MIT's Computational Visual Library Dataset. I chose this library since GAN's do a much better job at understanding symmetry and texture in photos than it is at understanding complicated geometrics. The coastal photos are very symmtrical and have simple textures that the GAN can replicate easier compared to the second dataset, the MPII Human Pose Dataset. This dataset consists of people performing actions in various enviorments which means the GAN will have a harder time understanding the features and boudaries in the photo. This means that it will be much more common to see some blurring or color bleeding effects during training as compared to the coastal photos. The MPII dataset varies in size so we are going to reshape them all to 256px256p which is the default size for the coastal images.
+I used two different datasets for this project; the first is a collection of beach and coastal pictures from MIT's Computational Visual Library Dataset. I chose this library since GAN's do a much better job at understanding symmetry and texture in photos than it is at understanding complicated geometrics. The coastal photos are very symmtrical and have simple textures that the GAN can replicate easier compared to the second dataset, the MPII Human Pose Dataset. This dataset consists of people performing actions in various environments which means the GAN will have a harder time understanding the features and boudaries in the photo. This means that it will be much more common to see some blurring or color bleeding effects during training as compared to the coastal photos. The MPII dataset varies in size so we are going to reshape them all to 256px256p which is the default size for the coastal images.
 
 # Converting from RGB to LAB
 
@@ -33,7 +33,7 @@ The L channel is going to be used as the input to the Generator since it is equi
 
 ## Generator
 
-The Generator can be broken down into two parts, the encoder and the decoder. The encoder consists of 4 layers in total, first the L channel is passed and through 2-stride convolutional layer, starting with 64 feature maps and doubling each layer up to 512. Each layer also halves the size of the image so by the time we reach the latent space(middle) the feature maps are 16x16 in size. Lastly each layer also uses a Leaky ReLU activation function and batch normalization.
+The Generator can be broken down into two parts, the encoder and the decoder. The encoder consists of 4 layers in total; first the L channel is passed through a 2-stride convolutional layer, starting with 64 feature maps and doubling each layer up to 512. Each layer also halves the size of the image so by the time we reach the latent space (middle) the feature maps are 16x16 in size. Lastly, each layer also uses a Leaky ReLU activation function and batch normalization.
 
 <p align="center">
 <img src="https://miro.medium.com/max/3636/0*7fgHtc8fEmoC_SiZ.png" width="600" height="300">
