@@ -24,7 +24,7 @@ The first step was converting the images from their standard RGB color channels 
 - A - Represents the red to green trade off of the pixels
 - B - Represents the blue to yellow trade off of the pixels
 <p align="center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/CIELAB_color_space_front_view.png" width="500" height="500">
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/CIELAB_color_space_front_view.png" width="300" height="300">
 </p>
 The L channel is going to be used as the input to the Generator since it is equivalent to a gray scale photo. The generator will then output both the AB channels which we combine with the input to create a colored image. The last thing we do in the transformation is scale all pixel values in the LAB color channels to the range -1 to 1.
 
@@ -35,7 +35,9 @@ The L channel is going to be used as the input to the Generator since it is equi
 
 The Generator can be broken down into two parts, the encoder and the decoder. The encoder consists of 4 layers in total, first the L channel is passed and through 2-stride convolutional layer, starting with 64 feature maps and doubling each layer up to 512. Each layer also halves the size of the image so by the time we reach the latent space(middle) the feature maps are 16x16 in size. Lastly each layer also uses a Leaky ReLU activation function and batch normalization.
 
-<img src="https://miro.medium.com/max/3636/0*7fgHtc8fEmoC_SiZ.png" width="800" height="400">
+<p align="center">
+<img src="https://miro.medium.com/max/3636/0*7fgHtc8fEmoC_SiZ.png" width="600" height="300">
+</p>
 
 The Decoder is similiar except it uses transpose convolutional layers which upsamples the size of the image and halves the number of feature maps. Like in the encoder there are four of they layers and they all use the ReLU activation function and batch normalization. Lastly we use a normal convolutional layer and output 2 channels that we pass through a tanh activation function to replicate the range we scaled the images to when converting to LAB. The model
 
@@ -55,12 +57,16 @@ As you can see from the graph the training cycle can be highly eratic and hard t
 # Results
 
 These images were not part of either dataset and were images taken from the internet. I converted them to the black and white L channel and create the A and B channels via the generator. Lastly I concatenate it back together and print the images you see below. This allows me to recolor both black and white as well as colored images.
-
-<img src="https://github.com/jmt0221/ColorGan/blob/master/images/woman_together.png" width="700" height="350">
-<img src="https://github.com/jmt0221/ColorGan/blob/master/images/golf_together.png" width="700" height="350">
+<p align="center">
+<img src="https://github.com/jmt0221/ColorGan/blob/master/images/woman_together.png" width="600" height="300">
+<img src="https://github.com/jmt0221/ColorGan/blob/master/images/golf_together.png" width="600" height="300">
+</p>
 
 <pre>
      Left: Original Image                     Right: Fake Image
 </pre>
-<img src="https://github.com/jmt0221/ColorGan/blob/master/images/kitchen_combined.png" width="700" height="350">
-<img src="https://github.com/jmt0221/ColorGan/blob/master/images/magic_combined.png" width="700" height="350">
+
+<p align="center">
+<img src="https://github.com/jmt0221/ColorGan/blob/master/images/kitchen_combined.png" width="600" height="300">
+<img src="https://github.com/jmt0221/ColorGan/blob/master/images/magic_combined.png" width="600" height="300">
+</p>
