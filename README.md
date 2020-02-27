@@ -47,18 +47,18 @@ The Discriminator is a much simpler model and has four 2-stride convolutional la
 
 # Training
 
-Both models use Binary Crossentropy for their loss functions and the Adam optimization function. Contrary to all the research I found online, I had to use a lower learning rate for the discriminator to keep the model in equilibrium. The biggest differece beteen a GAN and most machine learning models, is that the goal of a GAN isn't to minimize or maximize and function but instead keep the two competing networks in equillibrium during training, which can last anywhere from 6-12 hours on a GPU. During training I shuffle my dataset and use mini epochs of 320 images. I train the discriminator first on two half batches of 160 real and 160 fake images, then the generator is trained a full batch of 320. I would usually run this for about 3000 epochs, but further training produced better results occassionaly.
+Both models use Binary Crossentropy for their loss functions and the Adam optimization function. Contrary to all the research I have found online, I had to use a lower learning rate for the discriminator to keep the model in equilibrium. The biggest difference between a GAN and most machine learning models, is that the goal of a GAN isn't to minimize or maximize any function; instead a GAN will keep the two competing networks in equillibrium during training, which can last anywhere from 6-12 hours on a GPU. During training I shuffle my dataset and use mini epochs of 320 images. I train the discriminator first on two half batches of 160 real and 160 fake images, and then the generator is trained a full batch of 320. I would usually run this for about 3000 epochs, but further training produced better results occassionally.
 
 <p align="center">
 <img src="https://miro.medium.com/max/3232/1*siZC9SZPLHpr9C0ofoajpA.png" width="800" height="300">
 </p>
 
-As you can see from the graph the training cycle can be highly eratic and hard to know how well the model is doing. The best way to keep track of its progess is to print a fake image every 50-100 epochs and save the model about half as often.
+As you can see from the graph, the training cycle can be highly eratic, making it difficult to perceive how well the model is doing. The best way to keep track of its progess is to print a fake image every 50-100 epochs and save the model about half as often.
 
 
 # Results
 
-These images were not part of either dataset and were images taken from the internet. I converted them to the black and white L channel and create the A and B channels via the generator. Lastly I concatenate it back together and print the images you see below. This allows me to recolor both black and white as well as colored images.
+These images were not part of either dataset and were images taken from the internet. I converted them to the black and white L channel and create the A and B channels via the generator. Finally, I concatenate it back together and print the images you see below. This allows me to recolor both black and white as well as colored images.
 <p align="center">
 <img src="https://github.com/jmt0221/ColorGan/blob/master/images/woman_together.png" width="600" height="300">
 <img src="https://github.com/jmt0221/ColorGan/blob/master/images/golf_together.png" width="600" height="300">
