@@ -2,7 +2,7 @@
 
 This Generative Network created in Python's Keras allows us to accurately transform photos from black and white to color. 
 
-Here is a blog covering the project in further detail: https://towardsdatascience.com/coloring-photos-with-a-generative-adversarial-network-a435c4403b5d
+Here is a [blog](https://towardsdatascience.com/coloring-photos-with-a-generative-adversarial-network-a435c4403b5d) covering the project in further detail: 
 
 ### Required Libraries
 I ran this model in an AWS SageMaker GPU instance to handle the high computational requirements. I have included the code and imports needed if you want to run it in the same instance. Training time varied from 6-12 hours depending on the dataset and learning rate.
