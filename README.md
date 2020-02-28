@@ -66,6 +66,7 @@ These images were not part of either dataset and were images taken from the inte
 
 <p align="center">
 <img src="https://github.com/jmt0221/ColorGan/blob/master/images/woman_together.png" width="600" height="300">
+
 <img src="https://github.com/jmt0221/ColorGan/blob/master/images/golf_together.png" width="600" height="300">
 </p>
 
@@ -73,5 +74,6 @@ These images were not part of either dataset and were images taken from the inte
 
 <p align="center">
 <img src="https://github.com/jmt0221/ColorGan/blob/master/images/kitchen_combined.png" width="600" height="300">
+
 <img src="https://github.com/jmt0221/ColorGan/blob/master/images/magic_combined.png" width="600" height="300">
 </p>
