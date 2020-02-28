@@ -61,7 +61,7 @@ As you can see from the graph, the training cycle can be highly erratic, making 
 These images were not part of either dataset and were images taken from the internet. I converted them to the black and white L channel and create the A and B channels via the generator. Finally, I concatenate it back together and print the images you see below. This allows me to recolor both black and white as well as colored images.
 
 <pre>
-             Left: Original Image                     Right: Fake Image
+                         Left: Original Image                     Right: Fake Image
 </pre>
 
 <p align="center">
